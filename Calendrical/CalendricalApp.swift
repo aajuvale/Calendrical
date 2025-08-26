@@ -13,5 +13,6 @@ struct CalendricalApp: App {
         WindowGroup {
             ContentView()
         }
+        .windowResizability(.contentSize)
     }
 }
