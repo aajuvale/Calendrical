@@ -18,7 +18,7 @@ struct ContentView: View {
     private var year = Calendar.current.component(.year, from: Date())
 
     var body: some View {
-        let days = generateMonthDays(for: monthIndex)
+        let days = generateMonthDays(for: monthIndex, year: Int(year))
 
         VStack {
             HStack(alignment: .top) {
@@ -35,7 +35,11 @@ struct ContentView: View {
 
                 Button {
                     // Back arrow takes to previous month
-                    monthIndex = (monthIndex - 1 + 12) % 12
+                    monthIndex -= 1
+                    if monthIndex > 11 {
+                        monthIndex = 0
+                        year -= 1
+                    }
                 } label: {
                     Image(systemName: "chevron.backward")
                 }
@@ -43,7 +47,11 @@ struct ContentView: View {
 
                 Button {
                     // Forward arrow takes to next month
-                    monthIndex = (monthIndex + 1) % 12
+                    monthIndex += 1
+                    if monthIndex > 11 {
+                        monthIndex = 0
+                        year += 1
+                    }
                 } label: {
                     Image(systemName: "chevron.forward")
                 }
@@ -86,9 +94,9 @@ struct ContentView: View {
     }
 
     /// Generate an array of Ints for each day in a month
-    private func generateMonthDays(for monthIndex: Int) -> [Int] {
+    private func generateMonthDays(for monthIndex: Int, year: Int) -> [Int] {
         let calendar = Calendar.current
-        let year = calendar.component(.year, from: Date())
+        let year = year
         let components = DateComponents(year: year, month: monthIndex + 1, day: 1)
 
         guard let firstDay = calendar.date(from: components),
