@@ -25,6 +25,7 @@ struct ContentView: View {
                 HStack {
                     Text("\(Calendar.current.monthSymbols[monthIndex])")
                         .font(.title)
+                        .bold()
                         .foregroundStyle(.blue)
 
                     Text(String(year))
@@ -75,15 +76,16 @@ struct ContentView: View {
                     GridRow {
                         ForEach(0..<7, id: \.self) { dayIndex in
                             let value = days[week * 7 + dayIndex]
+                            let isSelected = (value == Calendar.current.component(.day, from: currentDate) &&
+                                              monthIndex == Calendar.current.component(.month, from: Date()) - 1)
                             Text(value == 0 ? "" : "\(value)")
-                                .frame(maxWidth: .infinity, minHeight: 30)
+                                .frame(maxWidth: .infinity, minHeight: 40)
                                 .background(
-                                    (value == Calendar.current.component(.day, from: currentDate) &&
-                                         monthIndex == Calendar.current.component(.month, from: Date()) - 1)
+                                    isSelected
                                         ? Color.blue.opacity(0.2)
                                         : Color.clear
-                                ) // highlight today
-                                .clipShape(RoundedRectangle(cornerRadius: 6))
+                                )
+                                .clipShape(.circle)
                         }
                     }
                 }
