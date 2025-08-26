@@ -57,20 +57,20 @@ struct ContentView: View {
                 }
                 .frame(alignment: .trailing)
             }
+            .padding()
 
             let daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
 
-            HStack {
-                ForEach(daysOfWeek, id: \.self) { day in
-                    Text(day)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .frame(maxWidth: .infinity)
-                }
-            }
-            .padding()
-
             Grid {
+                GridRow {
+                    ForEach(daysOfWeek, id: \.self) { day in
+                        Text(day)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .frame(maxWidth: .infinity)
+                    }
+                }
+
                 ForEach(0..<days.count/7, id: \.self) { week in
                     GridRow {
                         ForEach(0..<7, id: \.self) { dayIndex in
