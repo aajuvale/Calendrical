@@ -11,9 +11,6 @@ struct ContentView: View {
     @State
     private var monthIndex: Int = Calendar.current.component(.month, from: Date()) - 1
 
-    @State
-    private var count = 0
-
     var body: some View {
         VStack {
             HStack(alignment: .top) {
@@ -39,8 +36,18 @@ struct ContentView: View {
                 .frame(alignment: .trailing)
             }
 
-//            GridRow {
-//            }
+            GridRow {
+                let daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
+
+                HStack {
+                    ForEach(daysOfWeek, id: \.self) { day in
+                            Text(day)
+                                .font(.caption)
+                                .frame(maxWidth: .infinity)
+                        }
+                }
+            }
+            .padding()
         }
         .frame(width: 500, height: 1000)
         .padding()
