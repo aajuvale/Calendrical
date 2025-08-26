@@ -9,36 +9,34 @@ import SwiftUI
 
 struct ContentView: View {
     @State
-    private var monthString = ""
+    private var monthIndex: Int = Calendar.current.component(.month, from: Date()) - 1
+
     @State
     private var count = 0
 
     var body: some View {
         VStack {
             HStack(alignment: .top) {
-                if let monthInt = Calendar.current.dateComponents([.month], from: Date()).month {
-                    var monthStr = Calendar.current.monthSymbols[monthInt - 1]
-                    Text(monthStr)
-                        .font(.title)
+                Text(Calendar.current.monthSymbols[monthIndex])
+                                    .font(.title)
 
-                    Spacer()
+                Spacer()
 
-                    Button {
-                        // Back arrow takes to previous month
-//                        count -= 1
-//                        monthString = Calendar.current.monthSymbols[monthInt-count-1]
-                    } label: {
-                        Image(systemName: "chevron.backward")
-                    }
-                    .frame(alignment: .trailing)
-
-                    Button {
-                        // Forward arrow takes to next month
-                    } label: {
-                        Image(systemName: "chevron.forward")
-                    }
-                    .frame(alignment: .trailing)
+                Button {
+                    // Back arrow takes to previous month
+                    monthIndex = (monthIndex - 1 + 12) % 12
+                } label: {
+                    Image(systemName: "chevron.backward")
                 }
+                .frame(alignment: .trailing)
+
+                Button {
+                    // Forward arrow takes to next month
+                    monthIndex = (monthIndex + 1) % 12
+                } label: {
+                    Image(systemName: "chevron.forward")
+                }
+                .frame(alignment: .trailing)
             }
 
 //            GridRow {
