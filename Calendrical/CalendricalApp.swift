@@ -10,14 +10,9 @@ import SwiftUI
 @main
 struct CalendricalApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-        .windowResizability(.contentSize)
-
-//        MenuBarExtra("Calendrical", systemImage: "calendar") {
-//                    ContentView()
-//                }
-
+        MenuBarExtra("Calendrical", systemImage: "calendar") {
+                    ContentView()
+                }
+        .menuBarExtraStyle(.window)
     }
 }
