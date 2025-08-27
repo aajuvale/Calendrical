@@ -37,8 +37,8 @@ struct ContentView: View {
                 Button {
                     // Back arrow takes to previous month
                     monthIndex -= 1
-                    if monthIndex > 11 {
-                        monthIndex = 0
+                    if monthIndex < 0 {
+                        monthIndex = 11
                         year -= 1
                     }
                 } label: {

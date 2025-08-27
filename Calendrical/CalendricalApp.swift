@@ -14,5 +14,10 @@ struct CalendricalApp: App {
             ContentView()
         }
         .windowResizability(.contentSize)
+
+//        MenuBarExtra("Calendrical", systemImage: "calendar") {
+//                    ContentView()
+//                }
+
     }
 }
