@@ -17,10 +17,15 @@ struct ContentView: View {
     @State
     private var year = Calendar.current.component(.year, from: Date())
 
+    @State
+    private var userInput = ""
+
     var body: some View {
         let days = generateMonthDays(for: monthIndex, year: Int(year))
 
         VStack {
+            GrowingTextEditor(text: $userInput)
+
             HStack(alignment: .top) {
                 HStack {
                     Text("\(Calendar.current.monthSymbols[monthIndex])")
@@ -122,6 +127,32 @@ struct ContentView: View {
     }
 
 
+}
+
+struct GrowingTextEditor: View {
+    @Binding var text: String
+    @State private var textHeight: CGFloat = 40
+
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            Text(text)
+                .font(.body)
+                .padding(.horizontal, 4)
+                .background(GeometryReader { geo in
+                    Color.clear.onAppear {
+                        textHeight = geo.size.height
+                    }
+                    .onChange(of: text) { _ in
+                        textHeight = geo.size.height
+                    }
+                })
+                .hidden()
+
+            TextEditor(text: $text)
+                .font(.title2)
+                .frame(height: max(textHeight, 40))
+        }
+    }
 }
 
 #Preview {
