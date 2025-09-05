@@ -78,10 +78,11 @@ struct ContentView: View {
                             let value = days[week * 7 + dayIndex]
                             let isSelected = (value == Calendar.current.component(.day, from: currentDate) &&
                                               monthIndex == Calendar.current.component(.month, from: Date()) - 1)
+                            let currentYear = (year == Calendar.current.component(.year, from: currentDate))
                             Text(value == 0 ? "" : "\(value)")
                                 .frame(maxWidth: .infinity, minHeight: 40)
                                 .background(
-                                    isSelected
+                                    isSelected && currentYear
                                         ? Color.blue.opacity(0.2)
                                         : Color.clear
                                 )
