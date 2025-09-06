@@ -99,7 +99,6 @@ struct ContentView: View {
             .frame(width: 300, height: 300, alignment: .center)
         }
         .frame(width: 350, height: 450)
-        .padding()
     }
 
     /// Generate an array of Ints for each day in a month
@@ -152,6 +151,7 @@ struct GrowingTextEditor: View {
                 .font(.title2)
                 .frame(height: max(textHeight, 40))
         }
+        .padding(.horizontal)
     }
 }
 
