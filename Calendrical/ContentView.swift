@@ -141,7 +141,7 @@ struct GrowingTextEditor: View {
                     Color.clear.onAppear {
                         textHeight = geo.size.height
                     }
-                    .onChange(of: text) { _ in
+                    .onChange(of: text) { _, _ in
                         textHeight = geo.size.height
                     }
                 })
