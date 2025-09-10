@@ -28,6 +28,7 @@ struct ContentView: View {
 
             HStack(alignment: .top) {
                 HStack {
+                    // Stores month + year
                     Text("\(Calendar.current.monthSymbols[monthIndex])")
                         .font(.title)
                         .bold()
