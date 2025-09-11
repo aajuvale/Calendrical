@@ -66,6 +66,7 @@ struct ContentView: View {
             }
             .padding()
 
+            // Stores days of week in order
             let daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
 
             Grid {
